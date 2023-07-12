@@ -1,6 +1,8 @@
 package com.SpringHotel.controller;
 
 import com.SpringHotel.entity.Prenotazioni;
+import com.SpringHotel.entity.UtentePrenotazioni;
+import com.SpringHotel.repository.UtentePrenotazioniRepository;
 import com.SpringHotel.service.PrenotazioniService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +15,12 @@ import java.util.List;
 public class PrenotazioniController {
     @Autowired
     PrenotazioniService prenotazioniS;
+    @Autowired
+    UtentePrenotazioniRepository utentePrenotazioniR;
+    @PostMapping("/addUtentePrenotazioni")
+    public UtentePrenotazioni addUtentePrenotazioni(@RequestBody UtentePrenotazioni up){
+        return utentePrenotazioniR.save(up);
+    }
     @GetMapping("/getById/{id}")
     public List<Prenotazioni> GetPrenotazioniById(@PathVariable Integer id){
         return prenotazioniS.GetPrenotazioniById(id);

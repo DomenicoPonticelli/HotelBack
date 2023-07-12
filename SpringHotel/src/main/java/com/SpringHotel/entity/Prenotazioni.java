@@ -16,15 +16,12 @@ public class Prenotazioni {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
     @Column(name = "data_inizio", nullable = false)
     private LocalDate dataInizio;
 
-    @NotNull
     @Column(name = "data_fine", nullable = false)
     private LocalDate dataFine;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_tipo_stanza", nullable = false)

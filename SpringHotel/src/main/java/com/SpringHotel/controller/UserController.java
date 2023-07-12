@@ -22,7 +22,6 @@ public class UserController {
          return userS.GetUserByid(id);
      }
 
-    @PreAuthorize("hasRole('ADMIN')")
      @GetMapping("/getAll")
      public List<User> GetAllUser(){
          return userS.GetAll();

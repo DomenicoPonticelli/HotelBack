@@ -1,6 +1,8 @@
 package com.SpringHotel.controller;
 
+import com.SpringHotel.entity.Prenotazioni;
 import com.SpringHotel.entity.TipoStanza;
+import com.SpringHotel.repository.TipoStanzaRepository;
 import com.SpringHotel.service.TipoStanzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,11 +16,17 @@ import java.util.List;
 public class TipoStanzaController {
     @Autowired
     TipoStanzaService TipoStanzaS;
+    @Autowired
+    TipoStanzaRepository TipoStanzaR;
 
     @GetMapping("/getAll")
     public List<TipoStanza> GetAllTipoStanza(){
 
         return TipoStanzaS.GetAll();
+    }
+    @GetMapping("/getById/{id}")
+    public TipoStanza GetTipoStanzaById(@PathVariable Integer id){
+        return TipoStanzaR.findById(id).orElse(null);
     }
     @PostMapping("/add")
     public TipoStanza addTipoStanza(@RequestBody TipoStanza u){
