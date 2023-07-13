@@ -17,6 +17,15 @@ public class PrenotazioniController {
     PrenotazioniService prenotazioniS;
     @Autowired
     UtentePrenotazioniRepository utentePrenotazioniR;
+
+    @GetMapping("/getPrenotazioniAndUserId")
+        public List<Object>getPrenotazioniAndUserId(){
+        return prenotazioniS.getPrenotazioniAndUserId();
+    }
+    @GetMapping("/prenotazioniByIdTipoStanza/{idStanza}")
+    public List<Prenotazioni> getPrenotazioniByIdStanza(@PathVariable Integer idStanza){
+        return prenotazioniS.getPrenotazioniByIdStanza(idStanza);
+    }
     @PostMapping("/addUtentePrenotazioni")
     public UtentePrenotazioni addUtentePrenotazioni(@RequestBody UtentePrenotazioni up){
         return utentePrenotazioniR.save(up);
@@ -40,9 +49,9 @@ public class PrenotazioniController {
     public String deleteprenotazioni(@PathVariable Integer id,Prenotazioni u){
         return prenotazioniS.deleteByPrenotazioniId(id);
     }
-    @PutMapping("/update/{id}")
-    public Prenotazioni updateprenotazioni(@PathVariable Integer id,@RequestBody Prenotazioni u){
-        return prenotazioniS.updatePrenotazioni(id,u);
+    @PutMapping("/update")
+    public Prenotazioni updateprenotazioni(@RequestBody Prenotazioni u){
+        return prenotazioniS.updatePrenotazioni(u);
     }
 }
 
